@@ -1,0 +1,1863 @@
+:root {
+    --bg: #020617;
+    --card: rgba(15, 23, 42, 0.45);
+    --card-light: rgba(255, 255, 255, 0.055);
+
+    --muted: #9aa4b2;
+    --text: #e6eef6;
+
+    --accent: #06b6d4;
+    --accent2: #7c3aed;
+
+    --glass: rgba(255, 255, 255, 0.055);
+    --glass-border: rgba(255, 255, 255, 0.12);
+
+    --radius: 18px;
+
+    color-scheme: dark;
+
+    font-family: "Inter", sans-serif;
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(6, 182, 212, 0.15),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(124, 58, 237, 0.15),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(6, 182, 212, 0.08),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #020617,
+            #07111f,
+            #0f1724
+        );
+
+    background-attachment: fixed;
+
+    color: var(--text);
+
+    padding: 32px 16px;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    position: relative;
+}
+
+
+/* =========================
+   FLOATING BACKGROUND GLOW
+========================= */
+
+.background-glow {
+    position: fixed;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    filter: blur(120px);
+
+    opacity: 0.25;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    animation: floatingGlow 8s ease-in-out infinite alternate;
+}
+
+
+.glow-one {
+    background: #06b6d4;
+
+    top: 50px;
+    left: -180px;
+}
+
+
+.glow-two {
+    background: #7c3aed;
+
+    bottom: 20px;
+    right: -180px;
+
+    animation-delay: 2s;
+}
+
+
+@keyframes floatingGlow {
+
+    from {
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        transform: translateY(40px) scale(1.15);
+    }
+}
+
+
+/* =========================
+   GLASS HEADER
+========================= */
+
+header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+
+    padding: 14px 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border: 1px solid var(--glass-border);
+
+    border-radius: 18px;
+
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.35),
+        inset 0 1px 1px rgba(255, 255, 255, 0.08);
+
+    position: sticky;
+
+    top: 15px;
+
+    z-index: 100;
+
+    overflow: hidden;
+}
+
+
+header::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 20%,
+            rgba(255,255,255,0.07),
+            transparent 50%
+        );
+
+    transform: translateX(-100%);
+
+    transition: 0.8s;
+
+    pointer-events: none;
+}
+
+
+header:hover::before {
+    transform: translateX(100%);
+}
+
+
+/* =========================
+   BRAND
+========================= */
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.brand h1 {
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+.brand p {
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    color: var(--muted);
+}
+
+
+.logo {
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent2)
+        );
+
+    display: grid;
+
+    place-items: center;
+
+    font-weight: 800;
+
+    font-size: 20px;
+
+    box-shadow:
+        0 0 30px rgba(6, 182, 212, 0.3),
+
+        inset 0 1px 1px
+        rgba(255,255,255,0.25);
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 4px;
+}
+
+
+nav a {
+
+    color: var(--muted);
+
+    padding: 8px 10px;
+
+    text-decoration: none;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+
+    transition: 0.3s;
+
+    border: 1px solid transparent;
+}
+
+
+nav a:hover {
+
+    color: white;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    border-color:
+        rgba(255,255,255,0.1);
+
+    backdrop-filter: blur(10px);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   HERO GLASS
+========================= */
+
+.hero {
+
+    display: grid;
+
+    grid-template-columns: 1fr 300px;
+
+    gap: 25px;
+
+    padding: 35px;
+
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.09),
+            rgba(255,255,255,0.025)
+        );
+
+    border: 1px solid
+        rgba(255,255,255,0.13);
+
+    backdrop-filter:
+        blur(25px) saturate(150%);
+
+    -webkit-backdrop-filter:
+        blur(25px) saturate(150%);
+
+    box-shadow:
+
+        0 25px 80px
+        rgba(0,0,0,0.35),
+
+        inset 0 1px 1px
+        rgba(255,255,255,0.1),
+
+        inset 0 -1px 1px
+        rgba(0,0,0,0.2);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 400px;
+
+    height: 400px;
+
+    right: -150px;
+
+    top: -180px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(6,182,212,0.18),
+            transparent 70%
+        );
+
+    filter: blur(30px);
+
+    pointer-events: none;
+}
+
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 1px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(255,255,255,0.08),
+            transparent 30%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   HERO CONTENT
+========================= */
+
+.intro {
+    position: relative;
+    z-index: 2;
+}
+
+
+.status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(6,182,212,0.08);
+
+    border:
+        1px solid
+        rgba(6,182,212,0.25);
+
+    color: #67e8f9;
+
+    font-size: 12px;
+
+    margin-bottom: 18px;
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        inset 0 1px 1px
+        rgba(255,255,255,0.05);
+}
+
+
+.status-dot {
+
+    width: 7px;
+
+    height: 7px;
+
+    background: #22c55e;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 12px #22c55e;
+}
+
+
+.intro h2 {
+
+    font-size: 46px;
+
+    line-height: 1.1;
+
+    margin-bottom: 18px;
+}
+
+
+.intro h2 strong {
+
+    background:
+        linear-gradient(
+            90deg,
+            #67e8f9,
+            #a78bfa,
+            #67e8f9
+        );
+
+    background-size: 200%;
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    animation: gradientMove 5s linear infinite;
+}
+
+
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 200%;
+    }
+}
+
+
+.intro p {
+
+    color: var(--muted);
+
+    line-height: 1.8;
+
+    max-width: 700px;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.cta {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+
+.btn {
+
+    display: inline-block;
+
+    padding: 11px 16px;
+
+    border-radius: 11px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    background:
+        rgba(255,255,255,0.04);
+
+    color: white;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition: 0.35s;
+
+    font-family: inherit;
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        inset 0 1px 1px
+        rgba(255,255,255,0.08);
+}
+
+
+.btn:hover {
+
+    transform:
+        translateY(-3px);
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border-color:
+        rgba(6,182,212,0.4);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,0.25);
+}
+
+
+.primary {
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            var(--accent2)
+        );
+
+    border: none;
+
+    color: #020617;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 10px 30px
+        rgba(6,182,212,0.2);
+}
+
+
+.primary:hover {
+
+    box-shadow:
+        0 15px 40px
+        rgba(6,182,212,0.35);
+
+    color: white;
+}
+
+
+/* =========================
+   HERO STATS
+========================= */
+
+.hero-stats {
+
+    display: flex;
+
+    gap: 35px;
+
+    margin-top: 35px;
+}
+
+
+.hero-stats div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    padding: 10px 14px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.07);
+
+    backdrop-filter: blur(10px);
+}
+
+
+.hero-stats strong {
+    font-size: 20px;
+}
+
+
+.hero-stats span {
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   PROFILE GLASS CARD
+========================= */
+
+.profile-card {
+
+    text-align: center;
+
+    padding: 22px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.08),
+            rgba(255,255,255,0.025)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.13);
+
+    backdrop-filter:
+        blur(25px) saturate(160%);
+
+    -webkit-backdrop-filter:
+        blur(25px) saturate(160%);
+
+    box-shadow:
+
+        0 20px 50px
+        rgba(0,0,0,0.3),
+
+        inset 0 1px 1px
+        rgba(255,255,255,0.1);
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================
+   PROFILE IMAGE
+========================= */
+
+.profile-image-container {
+
+    position: relative;
+
+    width: 145px;
+
+    height: 145px;
+
+    margin: 0 auto 15px;
+}
+
+
+.profile-image {
+
+    width: 145px;
+
+    height: 145px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border:
+        4px solid
+        rgba(6,182,212,0.6);
+
+    box-shadow:
+
+        0 0 0 6px
+        rgba(6,182,212,0.06),
+
+        0 20px 50px
+        rgba(0,0,0,0.45);
+
+    transition: 0.4s;
+}
+
+
+.profile-image:hover {
+
+    transform: scale(1.05);
+
+    box-shadow:
+
+        0 0 40px
+        rgba(6,182,212,0.35);
+}
+
+
+.profile-name {
+
+    font-weight: 700;
+
+    font-size: 19px;
+}
+
+
+.small {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-top: 6px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   AWS PROFILE BADGE
+========================= */
+
+.aws-certification {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    text-align: left;
+
+    margin-top: 18px;
+
+    padding: 12px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,153,0,0.06);
+
+    border:
+        1px solid
+        rgba(255,153,0,0.22);
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        inset 0 1px 1px
+        rgba(255,255,255,0.06);
+}
+
+
+.aws-badge-image {
+
+    width: 55px;
+
+    height: 55px;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,0.04);
+
+    padding: 3px;
+}
+
+
+.aws-certification strong {
+
+    display: block;
+
+    font-size: 13px;
+}
+
+
+.aws-certification span {
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+.quick-title {
+
+    margin-top: 18px;
+
+    margin-bottom: 8px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+.quick-links {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+    margin-top: 70px;
+}
+
+
+.section-heading {
+    margin-bottom: 22px;
+}
+
+
+.section-heading span {
+
+    color: #67e8f9;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.section-heading h3 {
+
+    font-size: 30px;
+
+    margin: 7px 0;
+}
+
+
+.section-heading p {
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   GLASS CARDS
+========================= */
+
+.card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.02)
+        );
+
+    padding: 20px;
+
+    border-radius: var(--radius);
+
+    margin-bottom: 20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    backdrop-filter:
+        blur(20px) saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(20px) saturate(140%);
+
+    box-shadow:
+
+        0 15px 45px
+        rgba(0,0,0,0.2),
+
+        inset 0 1px 1px
+        rgba(255,255,255,0.07);
+
+    transition: 0.35s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -100%;
+
+    width: 60%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.04),
+            transparent
+        );
+
+    transition: 0.8s;
+}
+
+
+.card:hover::before {
+
+    left: 140%;
+}
+
+
+.card:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(6,182,212,0.25);
+
+    box-shadow:
+
+        0 25px 60px
+        rgba(0,0,0,0.28),
+
+        inset 0 1px 1px
+        rgba(255,255,255,0.08);
+}
+
+
+/* =========================
+   SKILLS
+========================= */
+
+.badges {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+
+.badge {
+
+    display: inline-block;
+
+    background:
+        rgba(255,255,255,0.045);
+
+    border:
+        1px solid
+        rgba(6,182,212,0.18);
+
+    padding: 8px 13px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    color: #d9faff;
+
+    transition: 0.3s;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        inset 0 1px 1px
+        rgba(255,255,255,0.05);
+}
+
+
+.badge:hover {
+
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
+    background:
+        rgba(6,182,212,0.12);
+
+    border-color:
+        rgba(6,182,212,0.4);
+
+    box-shadow:
+        0 8px 20px
+        rgba(6,182,212,0.1);
+}
+
+
+/* =========================
+   PROJECTS
+========================= */
+
+.grid-3 {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.project {
+
+    min-height: 280px;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.project h3 {
+
+    font-size: 18px;
+
+    line-height: 1.4;
+
+    margin-top: 18px;
+}
+
+
+.project p {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    margin-top: 8px;
+}
+
+
+.thumb {
+
+    width: 100%;
+
+    height: 120px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(6,182,212,0.08),
+            rgba(124,58,237,0.08)
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    border-radius: 12px;
+
+    font-weight: 700;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    color: #67e8f9;
+
+    backdrop-filter: blur(12px);
+}
+
+
+.thumb span {
+    font-size: 25px;
+}
+
+
+.project-tag {
+
+    margin-top: auto;
+
+    display: inline-block;
+
+    color: #67e8f9;
+
+    font-size: 10px;
+
+    padding: 6px 9px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(6,182,212,0.07);
+
+    border:
+        1px solid
+        rgba(6,182,212,0.12);
+
+    width: max-content;
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* =========================
+   EDUCATION
+========================= */
+
+.education-card p {
+
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    font-size: 13px;
+}
+
+
+.education-card strong {
+    color: white;
+}
+
+
+.education-card li {
+
+    color: var(--muted);
+
+    margin: 7px 0;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   CERTIFICATION GRID
+========================= */
+
+.cert-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 16px;
+}
+
+
+/* =========================
+   CERTIFICATION GLASS CARD
+========================= */
+
+.cert-card {
+
+    display: flex;
+
+    gap: 18px;
+
+    padding: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.07),
+            rgba(255,255,255,0.02)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    border-radius: 16px;
+
+    backdrop-filter:
+        blur(22px) saturate(150%);
+
+    -webkit-backdrop-filter:
+        blur(22px) saturate(150%);
+
+    box-shadow:
+
+        0 15px 40px
+        rgba(0,0,0,0.2),
+
+        inset 0 1px 1px
+        rgba(255,255,255,0.07);
+
+    transition: 0.35s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.cert-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+
+    height: 150px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(6,182,212,0.06);
+
+    filter: blur(50px);
+
+    right: -80px;
+
+    bottom: -80px;
+
+    pointer-events: none;
+}
+
+
+.cert-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(6,182,212,0.3);
+
+    box-shadow:
+
+        0 25px 60px
+        rgba(0,0,0,0.3),
+
+        inset 0 1px 1px
+        rgba(255,255,255,0.1);
+}
+
+
+/* =========================
+   FEATURED AWS
+========================= */
+
+.featured-cert {
+
+    border-color:
+        rgba(255,153,0,0.35);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,153,0,0.08),
+            rgba(255,255,255,0.025)
+        );
+}
+
+
+.featured-cert:hover {
+
+    border-color:
+        rgba(255,153,0,0.6);
+
+    box-shadow:
+
+        0 25px 60px
+        rgba(255,153,0,0.08);
+}
+
+
+/* =========================
+   BADGE IMAGE
+========================= */
+
+.badge-image-container {
+
+    width: 115px;
+
+    min-width: 115px;
+
+    height: 115px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    overflow: hidden;
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        inset 0 1px 1px
+        rgba(255,255,255,0.07);
+}
+
+
+.cert-badge-image {
+
+    width: 105px;
+
+    height: 105px;
+
+    object-fit: contain;
+
+    transition: 0.4s;
+
+    filter:
+        drop-shadow(
+            0 8px 15px
+            rgba(0,0,0,0.3)
+        );
+}
+
+
+.cert-card:hover
+.cert-badge-image {
+
+    transform:
+        scale(1.08)
+        rotate(2deg);
+}
+
+
+/* =========================
+   CISCO NO PHOTO
+========================= */
+
+.simple-cert-logo {
+
+    width: 115px;
+
+    min-width: 115px;
+
+    height: 115px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 16px;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #06b6d4
+        );
+
+    color: white;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    box-shadow:
+
+        0 10px 30px
+        rgba(6,182,212,0.15),
+
+        inset 0 1px 1px
+        rgba(255,255,255,0.2);
+
+    backdrop-filter: blur(12px);
+}
+
+
+/* =========================
+   CERT CONTENT
+========================= */
+
+.cert-content {
+
+    position: relative;
+
+    z-index: 1;
+
+    flex: 1;
+}
+
+
+.cert-content h3 {
+
+    margin: 0 0 6px;
+
+    font-size: 15px;
+
+    line-height: 1.4;
+}
+
+
+.cert-content p {
+
+    margin: 0 0 9px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+.cert-category {
+
+    font-size: 9px;
+
+    padding: 5px 8px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(255,255,255,0.05);
+
+    color: #67e8f9;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.06);
+}
+
+
+.verified {
+
+    color: #22c55e;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 5px;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-card {
+
+    max-width: 850px;
+
+    margin: auto;
+}
+
+
+form {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 12px;
+}
+
+
+.full {
+    grid-column: 1 / -1;
+}
+
+
+input,
+textarea {
+
+    padding: 13px;
+
+    border-radius: 11px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    background:
+        rgba(255,255,255,0.035);
+
+    color: white;
+
+    outline: none;
+
+    font-family: inherit;
+
+    transition: 0.3s;
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        inset 0 1px 1px
+        rgba(255,255,255,0.04);
+}
+
+
+input::placeholder,
+textarea::placeholder {
+
+    color:
+        rgba(154,164,178,0.75);
+}
+
+
+input:focus,
+textarea:focus {
+
+    border-color:
+        rgba(6,182,212,0.55);
+
+    background:
+        rgba(6,182,212,0.04);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(6,182,212,0.06),
+
+        inset 0 1px 1px
+        rgba(255,255,255,0.06);
+}
+
+
+textarea {
+
+    min-height: 130px;
+
+    resize: vertical;
+}
+
+
+#formResponse {
+
+    color: #67e8f9;
+
+    font-size: 12px;
+
+    margin-top: 10px;
+}
+
+
+.contact-details {
+
+    margin-top: 20px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+}
+
+
+.contact-details p {
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+.contact-details a {
+
+    color: #67e8f9;
+
+    text-decoration: none;
+}
+
+
+.contact-details a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   FOOTER GLASS
+========================= */
+
+footer {
+
+    text-align: center;
+
+    color: var(--muted);
+
+    margin-top: 60px;
+
+    padding: 25px 15px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    font-size: 12px;
+
+    background:
+        rgba(255,255,255,0.02);
+
+    border-radius: 16px;
+
+    backdrop-filter: blur(15px);
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+}
+
+
+.hero,
+.card,
+.cert-card {
+
+    animation:
+        fadeUp 0.7s ease both;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 900px) {
+
+    header {
+
+        position: relative;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    nav {
+        justify-content: center;
+    }
+
+
+    .hero {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .grid-3 {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+}
+
+
+@media(max-width: 600px) {
+
+    body {
+
+        padding:
+            15px 10px;
+    }
+
+
+    .hero {
+
+        padding: 22px;
+    }
+
+
+    .intro h2 {
+
+        font-size: 35px;
+    }
+
+
+    .hero-stats {
+
+        gap: 10px;
+
+        flex-wrap: wrap;
+    }
+
+
+    .grid-3 {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .cert-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .cert-card {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+
+    .cert-content {
+
+        width: 100%;
+    }
+
+
+    form {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .full {
+
+        grid-column: auto;
+    }
+
+
+    nav a {
+
+        font-size: 11px;
+
+        padding: 6px;
+    }
+
+
+    .section-heading h3 {
+
+        font-size: 25px;
+    }
+
+
+    .profile-card {
+
+        padding: 18px;
+    }
+}
